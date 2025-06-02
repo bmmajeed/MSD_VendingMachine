@@ -1,0 +1,56 @@
+<final>         ::= <parameters>   <sequential> 
+<parameters>    ::=  reg [2:0]state;   
+                     parameter S0 = 3'b000;   
+                     parameter S1 = 3'b001;   
+                     parameter S2 = 3'b011;   
+                     parameter S3 = 3'b010;   
+                     parameter S4 = 3'b110;   
+                     parameter S5 = 3'b100; 	 
+<sequential>    ::=  always @(posedge clk) begin   
+                     if(!rst) begin 
+                        <state_block>   
+                     end  
+                        <last_else>  
+                     end       
+<state_block>   ::=  if (state == <state>) begin 
+                        <conditional>   
+                     end   
+                     else if (state == <state>) begin 
+                        <conditional>  
+                     end   
+                     else if (state == <state>) begin 
+                        <conditional>  
+                     end    
+                     else if (state == <state>) begin 
+                        <conditional>  
+                     end   
+                     else if (state == <state>) begin 
+                        <conditional>  
+                     end   
+                     else if (state == <state>) begin 
+                        <conditional>  
+                     end  
+                        <last_else>
+<conditional>   ::=  if (<var> == <val>) begin   
+                        state = <state>;   
+                        out = <val>;   
+                        rtrn = <val>;   
+                     end   
+                     else if (<var> == <val>) begin   
+                        state = <state>;   
+                        out = <val>;   
+                        rtrn = <val>;   
+                     end   
+                     else begin   
+                        state = <state>;   
+                        out = <val>;   
+                        rtrn = <val>;   
+                     end 
+<last_else>     ::=  else begin   
+                        state = S0;   
+                        out = 0;   
+                        rtrn = 0;   
+                     end
+<state>         ::=  S0 | S1 | S2 | S3 | S4 | S5 
+<var>           ::=  x0 | x1
+<val>           ::=  0 | 1 
